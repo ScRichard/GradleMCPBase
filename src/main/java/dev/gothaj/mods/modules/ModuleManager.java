@@ -1,10 +1,30 @@
 package dev.gothaj.mods.modules;
 
-public interface ModuleManager {
+import dev.gothaj.mods.modules.initializers.ModuleManagerInitializer;
 
-    void registerModules();
+import java.util.ArrayList;
 
-    void addModule();
-    void removeModule();
+public class ModuleManager implements ModuleManagerInitializer {
 
+    // Creating a module list
+    private final ArrayList<Mod> modules = new ArrayList<>();
+
+    public ModuleManager() {
+        registerModules();
+    }
+
+    @Override
+    public void registerModules() {
+
+    }
+
+    @Override
+    public void addModule() {
+
+    }
+
+    @Override
+    public void removeModule() {
+
+    }
 }

@@ -58,4 +58,20 @@ dependencies {
 
     implementation 'org.reflections:reflections:0.10.2'
 
+    // For Unit tests
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation 'org.assertj:assertj-core:3.19.0'
+
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+
+    maxHeapSize = '1G'
+
+    testLogging {
+        events "Passed"
+    }
 }
