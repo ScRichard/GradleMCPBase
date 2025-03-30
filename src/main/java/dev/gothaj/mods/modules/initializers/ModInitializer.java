@@ -8,4 +8,6 @@ public interface ModInitializer {
     void onEnable();
     void onDisable();
 
+    void toggle();
+
 }

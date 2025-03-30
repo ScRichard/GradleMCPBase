@@ -7,7 +7,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 
 @Getter
-@Setter
 public class ModuleManager implements ModuleManagerInitializer {
 
     // Creating a module list
