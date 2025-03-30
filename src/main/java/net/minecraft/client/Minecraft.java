@@ -35,6 +35,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
+
+import dev.gothaj.Client;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -495,6 +497,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.displayGuiScreen(new GuiMainMenu());
         }
 
+        // Loading a client
+        Client.INSTANCE.onEnable();
+
         this.renderEngine.deleteTexture(this.mojangLogo);
         this.mojangLogo = null;
         this.loadingScreen = new LoadingScreenRenderer(this);
@@ -936,6 +941,10 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     public void shutdownMinecraftApplet()
     {
+
+        // Disabling minecraft client
+        Client.INSTANCE.onDisable();
+
         try
         {
             this.stream.shutdownStream();

@@ -9,10 +9,15 @@ public enum Client {
 
     private ModuleManager moduleManager;
 
+    // Enabling a Client
     public void onEnable() {
 
+        // Registring a module manager
         moduleManager = new ModuleManager();
+
     }
+
+    // Disabling a client
     public void onDisable() {
 
     }
