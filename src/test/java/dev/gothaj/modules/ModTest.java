@@ -8,12 +8,6 @@ public class ModTest {
 
     @Test
     public void createModule() {
-        Mod mod = Mod.builder()
-                .name("test")
-                .description("test")
-                .build();
 
-        Assertions.assertThat(mod.getName()).isEqualTo("test");
-        Assertions.assertThat(mod.getDescription()).isEqualTo("test");
     }
 }

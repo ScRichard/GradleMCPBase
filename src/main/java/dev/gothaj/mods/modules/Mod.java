@@ -9,7 +9,6 @@ import net.minecraft.client.Minecraft;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Mod implements ModInitializer {
 
     // Not as optimalized as is should be, but its better than setting for every class
