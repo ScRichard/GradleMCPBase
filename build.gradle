@@ -50,4 +50,12 @@ dependencies {
     implementation "com.paulscode.sound:librarylwjglopenal:20100824"
     implementation "com.mojang:authlib:1.5.21"
 
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    implementation 'org.reflections:reflections:0.10.2'
+
 }
