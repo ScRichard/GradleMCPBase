@@ -1,9 +1,7 @@
 package dev.gothaj.events.initializers;
 
 import dev.gothaj.events.Event;
-import dev.gothaj.events.EventPriority;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public interface EventBusInitializer {

@@ -6,13 +6,12 @@ import dev.gothaj.mods.modules.Mod;
 import dev.gothaj.mods.modules.anotations.ModRegister;
 import org.lwjgl.input.Keyboard;
 
-@ModRegister(name = "Heloo", key = Keyboard.KEY_R)
+@ModRegister(name = "Sprint", description = "Allows you to sprint", key = Keyboard.KEY_R)
 public class SprintMod extends Mod {
-
-
+    
     @Subscribe
     public void onUpdate(EventUpdate e) {
-        mc.thePlayer.sendChatMessage("Sprint Mod");
+        mc.thePlayer.setSprinting(true);
     }
 
 }

@@ -13,24 +13,14 @@ import net.minecraft.client.Minecraft;
 public class Mod implements ModInitializer {
 
     // Not as optimalized as is should be, but its better than setting for every class
-    public static Minecraft mc = Minecraft.getMinecraft();
+    public static final Minecraft mc = Minecraft.getMinecraft();
 
     // Setting name, description, key and enabled
-    private String name = this.getClass().getAnnotation(ModRegister.class).name(),
-            description = this.getClass().getAnnotation(ModRegister.class).description();
+    private String name = this.getClass().getAnnotation(ModRegister.class).name();
+    private String description = this.getClass().getAnnotation(ModRegister.class).description();
     private int key = this.getClass().getAnnotation(ModRegister.class).key();
 
     private boolean enabled;
-
-    @Override
-    public void register() {
-
-    }
-
-    @Override
-    public void unregister() {
-
-    }
 
     @Override
     public void onEnable() {

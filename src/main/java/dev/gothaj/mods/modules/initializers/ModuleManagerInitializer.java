@@ -4,7 +4,4 @@ public interface ModuleManagerInitializer {
 
     void registerModules();
 
-    void addModule();
-    void removeModule();
-
 }

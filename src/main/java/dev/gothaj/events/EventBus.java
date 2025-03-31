@@ -60,7 +60,6 @@ public class EventBus implements EventBusInitializer {
     public void register(Object listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(Subscribe.class) && method.getParameterCount() == 1) {
-                method.setAccessible(true);
                 EventPriority priority = method.getAnnotation(Subscribe.class).priority();
                 elements.computeIfAbsent(priority, k -> new HashMap<>()).put(listener, method);
             }

@@ -8,5 +8,6 @@ import lombok.Setter;
 public class Event {
 
     private boolean cancelled;
+    private EventType type = EventType.PRE;
 
 }
