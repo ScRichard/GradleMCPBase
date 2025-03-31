@@ -1,5 +1,7 @@
 package net.minecraft.client.entity;
 
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -111,6 +113,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
         if (this.worldObj.isBlockLoaded(new BlockPos(this.posX, 0.0D, this.posZ)))
         {
+
+            Client.INSTANCE.getEventBus().fire(new EventUpdate());
+
             super.onUpdate();
 
             if (this.isRiding())

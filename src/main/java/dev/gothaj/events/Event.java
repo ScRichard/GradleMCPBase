@@ -6,5 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Event {
+
     private boolean cancelled;
+
 }

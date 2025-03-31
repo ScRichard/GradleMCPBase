@@ -1,5 +1,6 @@
 package dev.gothaj.mods.modules;
 
+import dev.gothaj.Client;
 import dev.gothaj.mods.modules.anotations.ModRegister;
 import dev.gothaj.mods.modules.initializers.ModInitializer;
 import lombok.*;
@@ -33,12 +34,12 @@ public class Mod implements ModInitializer {
 
     @Override
     public void onEnable() {
-
+        Client.INSTANCE.getEventBus().register(this);
     }
 
     @Override
     public void onDisable() {
-
+        Client.INSTANCE.getEventBus().unregister(this);
     }
 
     @Override

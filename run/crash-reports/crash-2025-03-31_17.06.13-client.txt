@@ -1,0 +1,114 @@
+---- Minecraft Crash Report ----
+// Uh... Did I do that?
+
+Time: 31.3.2025 17:06
+Description: Ticking entity
+
+java.lang.IllegalArgumentException: object is not an instance of declaring class
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at dev.gothaj.events.EventBus.invokeMethod(EventBus.java:42)
+	at dev.gothaj.events.EventBus.fire(EventBus.java:28)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:117)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1709)
+	at net.minecraft.world.World.updateEntity(World.java:1682)
+	at net.minecraft.world.World.updateEntities(World.java:1537)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:2072)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1015)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:350)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:12)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at dev.gothaj.events.EventBus.invokeMethod(EventBus.java:42)
+	at dev.gothaj.events.EventBus.fire(EventBus.java:28)
+	at net.minecraft.client.entity.EntityPlayerSP.onUpdate(EntityPlayerSP.java:117)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1709)
+	at net.minecraft.world.World.updateEntity(World.java:1682)
+
+-- Entity being ticked --
+Details:
+	Entity Type: null (net.minecraft.client.entity.EntityPlayerSP)
+	Entity ID: 90
+	Entity Name: Player234
+	Entity's Exact location: 578,79, 72,00, 365,28
+	Entity's Block location: 578,00,72,00,365,00 - World: (578,72,365), Chunk: (at 2,4,13 in 36,22; contains blocks 576,0,352 to 591,255,367), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Entity's Momentum: 0,00, -0,08, 0,00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1537)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player234'/90, l='MpServer', x=578,79, y=72,00, z=365,28]]
+	Chunk stats: MultiplayerChunkCache: 510, 510
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584,00,64,00,166,00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 17422 game time, 3546 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 74 total; [EntityZombie['Zombie'/16, l='MpServer', x=502,00, y=37,00, z=363,56], EntityBat['Bat'/19, l='MpServer', x=519,28, y=14,00, z=289,47], EntityBat['Bat'/20, l='MpServer', x=541,53, y=59,34, z=290,44], EntitySkeleton['Skeleton'/22, l='MpServer', x=537,47, y=31,00, z=314,09], EntityCreeper['Creeper'/23, l='MpServer', x=543,55, y=31,00, z=324,00], EntityZombie['Zombie'/24, l='MpServer', x=529,50, y=33,00, z=340,50], EntityZombie['Zombie'/25, l='MpServer', x=551,50, y=60,00, z=298,50], EntityZombie['Zombie'/26, l='MpServer', x=557,91, y=61,00, z=301,48], EntityPlayerSP['Player234'/90, l='MpServer', x=578,79, y=72,00, z=365,28], EntityZombie['Zombie'/27, l='MpServer', x=552,84, y=31,00, z=318,56], EntityCreeper['Creeper'/28, l='MpServer', x=559,03, y=32,00, z=319,66], EntityCreeper['Creeper'/29, l='MpServer', x=548,00, y=31,00, z=323,53], EntityBat['Bat'/30, l='MpServer', x=556,70, y=21,80, z=365,29], EntityZombie['Zombie'/31, l='MpServer', x=568,50, y=27,00, z=301,50], EntityWitch['Witch'/32, l='MpServer', x=573,28, y=36,00, z=318,50], EntityWitch['Witch'/33, l='MpServer', x=572,50, y=36,00, z=322,50], EntityZombie['Zombie'/34, l='MpServer', x=570,19, y=32,00, z=327,78], EntitySkeleton['Skeleton'/38, l='MpServer', x=579,34, y=28,00, z=292,81], EntitySpider['Spider'/39, l='MpServer', x=578,00, y=28,00, z=293,50], EntityZombie['Zombie'/40, l='MpServer', x=577,50, y=28,00, z=297,50], EntityBat['Bat'/41, l='MpServer', x=578,16, y=29,31, z=303,88], EntityZombie['Zombie'/42, l='MpServer', x=587,59, y=36,00, z=317,28], EntityZombie['Zombie'/43, l='MpServer', x=586,50, y=36,00, z=317,50], EntityBat['Bat'/44, l='MpServer', x=586,85, y=33,00, z=331,25], EntityZombie['Zombie'/45, l='MpServer', x=589,16, y=33,00, z=333,25], EntityBat['Bat'/46, l='MpServer', x=587,75, y=29,10, z=336,50], EntityCreeper['Creeper'/47, l='MpServer', x=576,06, y=31,00, z=348,38], EntityCreeper['Creeper'/48, l='MpServer', x=591,69, y=28,00, z=362,69], EntityCreeper['Creeper'/49, l='MpServer', x=591,28, y=28,00, z=361,81], EntityZombie['Zombie'/51, l='MpServer', x=594,50, y=32,00, z=323,50], EntityZombie['Zombie'/52, l='MpServer', x=593,34, y=32,00, z=327,88], EntityCreeper['Creeper'/53, l='MpServer', x=607,03, y=23,00, z=354,50], EntitySpider['Spider'/54, l='MpServer', x=597,28, y=27,00, z=357,94], EntityCreeper['Creeper'/56, l='MpServer', x=617,50, y=17,00, z=292,50], EntityCreeper['Creeper'/57, l='MpServer', x=618,50, y=17,00, z=297,50], EntityCreeper['Creeper'/58, l='MpServer', x=616,50, y=17,00, z=295,50], EntityZombie['Zombie'/59, l='MpServer', x=617,28, y=23,00, z=336,13], EntityZombie['Zombie'/60, l='MpServer', x=616,38, y=23,00, z=323,84], EntityZombie['Zombie'/61, l='MpServer', x=616,50, y=23,00, z=328,09], EntitySpider['Spider'/62, l='MpServer', x=612,69, y=37,00, z=322,59], EntityBat['Bat'/63, l='MpServer', x=608,59, y=36,23, z=328,39], EntityZombie['Zombie'/64, l='MpServer', x=623,72, y=19,00, z=337,50], EntityZombie['Zombie'/65, l='MpServer', x=610,94, y=23,00, z=340,53], EntityZombie['Zombie'/66, l='MpServer', x=616,16, y=23,00, z=340,41], EntityZombie['Zombie'/67, l='MpServer', x=612,86, y=31,00, z=350,50], EntitySkeleton['Skeleton'/68, l='MpServer', x=621,72, y=36,00, z=342,09], EntitySkeleton['Skeleton'/69, l='MpServer', x=615,56, y=26,00, z=366,69], EntityZombie['Zombie'/70, l='MpServer', x=613,50, y=24,00, z=354,03], EntityEnderman['Enderman'/71, l='MpServer', x=614,50, y=25,00, z=361,50], EntityEnderman['Enderman'/72, l='MpServer', x=615,13, y=25,00, z=362,44], EntityEnderman['Enderman'/73, l='MpServer', x=612,50, y=25,00, z=367,50], EntityEnderman['Enderman'/74, l='MpServer', x=615,06, y=25,00, z=365,38], EntityCreeper['Creeper'/76, l='MpServer', x=639,91, y=35,00, z=317,63], EntityMinecartChest['container.minecart'/77, l='MpServer', x=630,50, y=35,06, z=324,50], EntityZombie['Zombie'/78, l='MpServer', x=639,66, y=35,00, z=321,44], EntityCreeper['Creeper'/79, l='MpServer', x=639,66, y=35,00, z=324,91], EntityBat['Bat'/80, l='MpServer', x=633,31, y=34,10, z=346,59], EntityBat['Bat'/81, l='MpServer', x=628,58, y=33,06, z=347,28], EntityZombie['Zombie'/98, l='MpServer', x=502,38, y=36,00, z=378,31], EntityZombie['Zombie'/99, l='MpServer', x=502,09, y=36,00, z=377,41], EntityCreeper['Creeper'/100, l='MpServer', x=501,50, y=36,00, z=370,50], EntityCreeper['Creeper'/101, l='MpServer', x=500,50, y=36,00, z=371,50], EntitySkeleton['Skeleton'/104, l='MpServer', x=517,50, y=35,00, z=386,13], EntitySkeleton['Skeleton'/105, l='MpServer', x=530,59, y=49,00, z=397,91], EntitySkeleton['Skeleton'/106, l='MpServer', x=536,59, y=47,00, z=402,50], EntityCreeper['Creeper'/107, l='MpServer', x=537,56, y=48,00, z=402,50], EntityCreeper['Creeper'/108, l='MpServer', x=554,59, y=40,00, z=373,00], EntityCreeper['Creeper'/109, l='MpServer', x=561,88, y=39,00, z=368,81], EntityMinecartChest['container.minecart'/111, l='MpServer', x=592,50, y=24,06, z=378,50], EntityBat['Bat'/112, l='MpServer', x=635,50, y=32,10, z=376,75], EntityBat['Bat'/113, l='MpServer', x=630,44, y=33,10, z=372,50], EntityBat['Bat'/114, l='MpServer', x=637,72, y=35,69, z=371,72], EntityItem['item.tile.torch'/115, l='MpServer', x=634,44, y=35,00, z=404,13], EntityItem['item.tile.torch'/116, l='MpServer', x=635,50, y=35,00, z=407,25]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:356)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2610)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:371)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:12)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 1.8.0_442, Amazon.com Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Amazon.com Inc.
+	Memory: 127994272 bytes (122 MB) / 534249472 bytes (509 MB) up to 3780640768 bytes (3605 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: GradleMCP
+	LWJGL: 2.9.4
+	OpenGL: NVIDIA GeForce GTX 1650 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 555.97, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+	OptiFine Version: OptiFine_1.8.9_HD_U_M6_pre2
+	OptiFine Build: ~~NULL~~
+	Render Distance Chunks: 13
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 555.97
+	OpenGlRenderer: NVIDIA GeForce GTX 1650 Ti/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 8
