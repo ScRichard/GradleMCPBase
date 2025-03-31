@@ -26,7 +26,6 @@ public class EventBus implements EventBusInitializer {
         for (Map<Object, Method> priorities : elements.values()) {
             for (Map.Entry<Object, Method> entry : priorities.entrySet()) {
 
-                System.out.println("invoking");
                 this.invokeMethod(entry.getKey(), entry.getValue(), event);
             }
         }
