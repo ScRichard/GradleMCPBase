@@ -5,6 +5,9 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderUtils {
 
+    private RenderUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     // Main methods for rendering on screen
     public static void start2D() {
@@ -44,10 +47,10 @@ public class RenderUtils {
     }
     // Color method easier than COLOR
     public static void color(int color) {
-        float f3 = (float)(color >> 24 & 255) / 255.0F;
-        float f = (float)(color >> 16 & 255) / 255.0F;
-        float f1 = (float)(color >> 8 & 255) / 255.0F;
-        float f2 = (float)(color & 255) / 255.0F;
+        float f3 = (color >> 24 & 255) / 255.0F;
+        float f = (color >> 16 & 255) / 255.0F;
+        float f1 =(color >> 8 & 255) / 255.0F;
+        float f2 = (color & 255) / 255.0F;
 
         GlStateManager.color(f, f1, f2, f3);
     }
@@ -58,12 +61,10 @@ public class RenderUtils {
         GL11.glBegin(GL11.GL_QUADS); // setting up drawing
 
         // Verteces
-        {
-            GL11.glVertex2d(x, y);
-            GL11.glVertex2d(x + width, y);
-            GL11.glVertex2d(x + width, y + height);
-            GL11.glVertex2d(x, y + height);
-        }
+        GL11.glVertex2d(x, y);
+        GL11.glVertex2d(x + width, y);
+        GL11.glVertex2d(x + width, y + height);
+        GL11.glVertex2d(x, y + height);
 
         GL11.glEnd(); // Stopping rendering
 

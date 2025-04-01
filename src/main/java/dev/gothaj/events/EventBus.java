@@ -50,7 +50,7 @@ public class EventBus implements EventBusInitializer {
      * */
     @Override
     public boolean isParameterEvent(Class<?> parameter, Event event) {
-        return parameter.isAssignableFrom(event.getClass());
+        return parameter.equals(event.getClass());
     }
 
     /*
@@ -59,10 +59,11 @@ public class EventBus implements EventBusInitializer {
     @Override
     public void register(Object listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
-            if (method.isAnnotationPresent(Subscribe.class) && method.getParameterCount() == 1) {
-                EventPriority priority = method.getAnnotation(Subscribe.class).priority();
-                elements.computeIfAbsent(priority, k -> new HashMap<>()).put(listener, method);
-            }
+            if (!(method.isAnnotationPresent(Subscribe.class) && method.getParameterCount() == 1))
+                continue;
+
+            EventPriority priority = method.getAnnotation(Subscribe.class).priority();
+            elements.computeIfAbsent(priority, k -> new HashMap<>()).put(listener, method);
         }
     }
     /*
