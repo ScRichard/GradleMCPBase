@@ -12,5 +12,4 @@ public class Setting<T> {
 
     private T parent;
 
-
 }

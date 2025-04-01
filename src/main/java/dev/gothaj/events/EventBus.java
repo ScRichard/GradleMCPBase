@@ -19,8 +19,7 @@ public class EventBus implements EventBusInitializer {
 
     /*
     * Launching an event to modules
-    * */
-
+    */
     @Override
     public void fire(Event event) {
         for (Map<Object, Method> priorities : elements.values()) {
@@ -32,7 +31,7 @@ public class EventBus implements EventBusInitializer {
     }
     /*
      * Invoking method and checking parameter
-     * */
+     */
     @Override
     public void invokeMethod(Object o, Method method, Event event) {
 
@@ -47,7 +46,7 @@ public class EventBus implements EventBusInitializer {
 
     /*
      * Checking parameter if its event
-     * */
+     */
     @Override
     public boolean isParameterEvent(Class<?> parameter, Event event) {
         return parameter.equals(event.getClass());
@@ -55,7 +54,7 @@ public class EventBus implements EventBusInitializer {
 
     /*
      * Registring an Object to listeners
-     * */
+     */
     @Override
     public void register(Object listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
@@ -68,14 +67,14 @@ public class EventBus implements EventBusInitializer {
     }
     /*
      * Unregistring object from listeners
-     * */
+     */
     @Override
     public void unregister(Object listener) {
         elements.values().forEach(map -> map.remove(listener));
     }
     /*
      * Registration of priorities of launching
-     * */
+     */
     @Override
     public void registerPriorities() {
         elements.clear();
