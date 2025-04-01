@@ -1,6 +1,6 @@
-package dev.gothaj.mods.modules.anotations;
+package dev.gothaj.features.modules.anotations;
 
-import dev.gothaj.mods.modules.Category;
+import dev.gothaj.features.modules.Category;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

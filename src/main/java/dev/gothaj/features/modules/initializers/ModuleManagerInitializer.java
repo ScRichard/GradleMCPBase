@@ -1,4 +1,4 @@
-package dev.gothaj.mods.modules.initializers;
+package dev.gothaj.features.modules.initializers;
 
 public interface ModuleManagerInitializer {
 

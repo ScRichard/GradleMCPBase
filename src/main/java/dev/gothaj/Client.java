@@ -1,7 +1,7 @@
 package dev.gothaj;
 
 import dev.gothaj.events.EventBus;
-import dev.gothaj.mods.modules.ModuleManager;
+import dev.gothaj.features.modules.ModuleManager;
 import lombok.Getter;
 
 @Getter
@@ -16,6 +16,8 @@ public enum Client {
 
         // Registring a module manager
         moduleManager = new ModuleManager();
+        moduleManager.registerModules();
+
         eventBus = new EventBus();
         eventBus.registerPriorities();
 

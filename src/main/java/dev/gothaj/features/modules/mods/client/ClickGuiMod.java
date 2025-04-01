@@ -1,7 +1,7 @@
-package dev.gothaj.mods.modules.mods.client;
+package dev.gothaj.features.modules.mods.client;
 
-import dev.gothaj.mods.modules.Mod;
-import dev.gothaj.mods.modules.anotations.ModRegister;
+import dev.gothaj.features.modules.Mod;
+import dev.gothaj.features.modules.anotations.ModRegister;
 import dev.gothaj.ui.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
 

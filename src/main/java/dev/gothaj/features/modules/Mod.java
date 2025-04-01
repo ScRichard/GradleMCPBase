@@ -1,8 +1,8 @@
-package dev.gothaj.mods.modules;
+package dev.gothaj.features.modules;
 
 import dev.gothaj.Client;
-import dev.gothaj.mods.modules.anotations.ModRegister;
-import dev.gothaj.mods.modules.initializers.ModInitializer;
+import dev.gothaj.features.modules.anotations.ModRegister;
+import dev.gothaj.features.modules.initializers.ModInitializer;
 import lombok.*;
 import net.minecraft.client.Minecraft;
 

@@ -1,4 +1,4 @@
-package dev.gothaj.mods.modules;
+package dev.gothaj.features.modules;
 
 public enum Category {
     COMBAT,

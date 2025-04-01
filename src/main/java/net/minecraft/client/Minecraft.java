@@ -37,7 +37,6 @@ import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
 import dev.gothaj.Client;
-import dev.gothaj.mods.modules.Mod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
