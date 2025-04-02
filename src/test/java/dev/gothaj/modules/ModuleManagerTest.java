@@ -1,5 +1,6 @@
 package dev.gothaj.modules;
 
+import dev.gothaj.features.modules.Mod;
 import dev.gothaj.features.modules.ModuleManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,22 @@ class ModuleManagerTest {
         moduleManager.registerModules();
 
         Assertions.assertEquals(1, moduleManager.getModules().size());
+    }
+
+    @Test
+    void automaticModValueRegistrationTest() {
+        // registering a Modules
+        moduleManager.registerModules();
+
+        int values = 0;
+
+        for (Mod m : moduleManager.getModules()) {
+            m.registerSettings();
+            values += m.getSettings().size();
+        }
+        Assertions.assertEquals( 0,values);
 
     }
+
 
 }

@@ -19,6 +19,9 @@ public class ModuleManager implements ModuleManagerInitializer {
     @Singular
     private final ArrayList<Mod> modules = new ArrayList<>();
 
+    /*
+    * Module registration function
+    */
     @Override
     public void registerModules() {
 
@@ -28,6 +31,9 @@ public class ModuleManager implements ModuleManagerInitializer {
 
             try {
                 Mod mod = (Mod) clazz.getDeclaredConstructor().newInstance();
+
+                // Registring settings from modules
+                mod.registerSettings();
 
                 modules.add(mod);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
