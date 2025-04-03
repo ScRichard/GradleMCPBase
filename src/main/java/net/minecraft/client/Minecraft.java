@@ -1802,6 +1802,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
+
+                        Client.INSTANCE.getModuleManager().getModules().forEach((m) -> {
+                            if (m.getKey() == k) m.toggle();
+                        });
+
                         if (k == 1)
                         {
                             this.displayInGameMenu();
