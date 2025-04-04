@@ -1,9 +1,7 @@
 package dev.gothaj.values;
 
 import dev.gothaj.Client;
-import dev.gothaj.features.modules.Mod;
 import dev.gothaj.values.initializers.SettingInitializer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -31,16 +29,5 @@ public class Setting<T> implements SettingInitializer {
         Client.INSTANCE.getEventBus().unregister(this);
         running = false;
     }
-
-    @Override
-    public void execute() {
-
-        if(running) {
-            this.onDisable();
-            return;
-        }
-        this.onEnable();
-    }
-
 
 }
