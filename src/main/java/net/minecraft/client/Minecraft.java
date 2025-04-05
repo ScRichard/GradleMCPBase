@@ -13,6 +13,8 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +38,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
+import com.sun.org.apache.bcel.internal.generic.GOTO;
 import dev.gothaj.Client;
+import dev.gothaj.events.EventType;
+import dev.gothaj.events.events.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -976,6 +981,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
     private void runGameLoop() throws IOException
     {
+        EventGameLoop eventGameLoop = new EventGameLoop();
+        Client.INSTANCE.getEventBus().fire(eventGameLoop);
+
         long i = System.nanoTime();
         this.mcProfiler.startSection("root");
 
@@ -1604,11 +1612,24 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             --this.rightClickDelayTimer;
         }
 
+        EventTick eventTick = new EventTick();
+        Client.INSTANCE.getEventBus().fire(eventTick);
+
         this.mcProfiler.startSection("gui");
+
+        if (this.theWorld != null && this.thePlayer != null) {
+            EventRotation eventRotation = new EventRotation();
+            Client.INSTANCE.getEventBus().fire(eventRotation);
+        }
 
         if (!this.isGamePaused)
         {
             this.ingameGUI.updateTick();
+        }
+
+        if (this.theWorld != null && this.thePlayer != null) {
+            EventPreTick eventPreTick = new EventPreTick();
+            Client.INSTANCE.getEventBus().fire(eventPreTick);
         }
 
         this.mcProfiler.endSection();
@@ -1767,6 +1788,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
                 if (Keyboard.getEventKeyState())
                 {
+                    EventKeyPress eventKeyPress = new EventKeyPress(k);
+                    Client.INSTANCE.getEventBus().fire(eventKeyPress);
                     KeyBinding.onTick(k);
                 }
 
@@ -1938,7 +1961,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             for (int l = 0; l < 9; ++l)
             {
-                if (this.gameSettings.keyBindsHotbar[l].isPressed())
+                if (this.gameSettings.keyBindings[l].isPressed())
                 {
                     if (this.thePlayer.isSpectator())
                     {
@@ -1946,7 +1969,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
-                        this.thePlayer.inventory.currentItem = l;
+                        EventItemHotbarSwitch eventItemHotbarSwitch = new EventItemHotbarSwitch(l);
+                        Client.INSTANCE.getEventBus().fire(eventItemHotbarSwitch);
+                        if(eventItemHotbarSwitch.isCancelled()) {
+                            this.thePlayer.inventory.currentItem = eventItemHotbarSwitch.getSlot();
+                        } else {
+                            this.thePlayer.inventory.currentItem = l;
+                        }
                     }
                 }
             }
@@ -1986,6 +2015,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
             if (this.thePlayer.isUsingItem())
             {
+                EventClick eventClick = new EventClick();
+                Client.INSTANCE.getEventBus().fire(eventClick);
                 if (!this.gameSettings.keyBindUseItem.isKeyDown())
                 {
                     this.playerController.onStoppedUsingItem(this.thePlayer);
@@ -2036,6 +2067,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         {
             if (this.thePlayer != null)
             {
+                EventMouseClick eventMouseClick = new EventMouseClick();
+                Client.INSTANCE.getEventBus().fire(eventMouseClick);
                 ++this.joinPlayerCounter;
 
                 if (this.joinPlayerCounter == 30)
@@ -2271,6 +2304,9 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.thePlayer.movementInput = new MovementInputFromOptions(this.gameSettings);
             this.playerController.setPlayerCapabilities(this.thePlayer);
             this.renderViewEntity = this.thePlayer;
+
+            EventLoadWorld event = new EventLoadWorld(worldClientIn);
+            Client.INSTANCE.getEventBus().fire(event);
         }
         else
         {

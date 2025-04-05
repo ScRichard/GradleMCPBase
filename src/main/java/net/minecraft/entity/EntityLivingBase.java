@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventJump;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -1324,6 +1327,8 @@ public abstract class EntityLivingBase extends Entity
 
     protected void jump()
     {
+        EventJump eventJump = new EventJump(this.rotationYaw);
+        Client.INSTANCE.getEventBus().fire(eventJump);
         this.motionY = (double)this.getJumpUpwardsMotion();
 
         if (this.isPotionActive(Potion.jump))
@@ -1333,7 +1338,7 @@ public abstract class EntityLivingBase extends Entity
 
         if (this.isSprinting())
         {
-            float f = this.rotationYaw * 0.017453292F;
+            float f = eventJump.getYaw() * 0.017453292F;
             this.motionX -= (double)(MathHelper.sin(f) * 0.2F);
             this.motionZ += (double)(MathHelper.cos(f) * 0.2F);
         }

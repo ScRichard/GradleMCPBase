@@ -1,7 +1,9 @@
 package net.minecraft.client.entity;
 
 import dev.gothaj.Client;
+import dev.gothaj.events.events.EventChatSend;
 import dev.gothaj.events.events.EventMotion;
+import dev.gothaj.events.events.EventMove;
 import dev.gothaj.events.events.EventUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
@@ -232,9 +234,12 @@ public class EntityPlayerSP extends AbstractClientPlayer
     {
     }
 
-    public void sendChatMessage(String message)
-    {
-        this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
+    public void sendChatMessage(String message) {
+        EventChatSend event = new EventChatSend(message);
+        Client.INSTANCE.getEventBus().fire(event);
+        if (!event.isCancelled()) {
+            this.sendQueue.addToSendQueue(new C01PacketChatMessage(event.getMessage()));
+        }
     }
 
     public void swingItem()
@@ -784,6 +789,19 @@ public class EntityPlayerSP extends AbstractClientPlayer
         {
             this.capabilities.isFlying = false;
             this.sendPlayerAbilities();
+        }
+    }
+
+
+    @Override
+    public void moveEntity(double x, double y, double z) {
+        EventMove event = new EventMove(x, y, z);
+        Client.INSTANCE.getEventBus().fire(event);
+        if (!event.isCancelled()) {
+            x = event.getX();
+            y = event.getY();
+            z = event.getZ();
+            super.moveEntity(x, y, z);
         }
     }
 }

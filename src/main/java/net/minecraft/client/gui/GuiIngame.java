@@ -6,6 +6,9 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+
+import dev.gothaj.Client;
+import dev.gothaj.events.events.Event2D;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -326,6 +329,9 @@ public class GuiIngame extends Gui
         {
             this.overlayPlayerList.updatePlayerList(false);
         }
+
+        Event2D event2D = new Event2D(scaledresolution,partialTicks);
+        Client.INSTANCE.getEventBus().fire(event2D);
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();

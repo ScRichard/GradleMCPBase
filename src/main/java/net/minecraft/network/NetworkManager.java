@@ -2,6 +2,9 @@ package net.minecraft.network;
 
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventPacketReceive;
+import dev.gothaj.events.events.EventSendPacket;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelException;
@@ -135,18 +138,18 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
         this.closeChannel(chatcomponenttranslation);
     }
 
-    protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet p_channelRead0_2_) throws Exception
-    {
-        if (this.channel.isOpen())
-        {
-            try
-            {
-                p_channelRead0_2_.processPacket(this.packetListener);
-            }
-            catch (ThreadQuickExitException var4)
-            {
-                ;
-            }
+    protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Packet p_channelRead0_2_) throws Exception {
+        EventPacketReceive event = new EventPacketReceive(p_channelRead0_2_,getNetHandler());
+        Client.INSTANCE.getEventBus().fire(event);
+        if (event.isCancelled()) return;
+
+        if (!this.channel.isOpen()) return;
+        try {
+            p_channelRead0_2_.processPacket(this.packetListener);
+            return;
+        }
+        catch (ThreadQuickExitException threadQuickExitException) {
+
         }
     }
 
@@ -157,25 +160,22 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
         this.packetListener = handler;
     }
 
-    public void sendPacket(Packet packetIn)
-    {
-        if (this.isChannelOpen())
-        {
+    public void sendPacket(Packet packetIn) {
+        EventSendPacket event = new EventSendPacket(packetIn);
+        Client.INSTANCE.getEventBus().fire(event);
+        if (event.isCancelled()) return;
+        if (this.isChannelOpen()) {
             this.flushOutboundQueue();
-            this.dispatchPacket(packetIn, (GenericFutureListener <? extends Future <? super Void >> [])null);
+            this.dispatchPacket(packetIn, null);
+            return;
         }
-        else
-        {
-            this.readWriteLock.writeLock().lock();
-
-            try
-            {
-                this.outboundPacketsQueue.add(new NetworkManager.InboundHandlerTuplePacketListener(packetIn, (GenericFutureListener[])null));
-            }
-            finally
-            {
-                this.readWriteLock.writeLock().unlock();
-            }
+        this.readWriteLock.writeLock().lock();
+        try {
+            this.outboundPacketsQueue.add(new InboundHandlerTuplePacketListener(packetIn, null));
+            return;
+        }
+        finally {
+            this.readWriteLock.writeLock().unlock();
         }
     }
 
@@ -200,6 +200,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
             }
         }
     }
+
 
     private void dispatchPacket(final Packet inPacket, final GenericFutureListener <? extends Future <? super Void >> [] futureListeners)
     {

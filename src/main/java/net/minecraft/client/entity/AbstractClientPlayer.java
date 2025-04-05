@@ -2,6 +2,9 @@ package net.minecraft.client.entity;
 
 import com.mojang.authlib.GameProfile;
 import java.io.File;
+
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventLook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ImageBufferDownload;
@@ -210,6 +213,8 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 
     public Vec3 getLook(float partialTicks)
     {
-        return this.getVectorForRotation(this.rotationPitch, this.rotationYaw);
+        EventLook e = new EventLook(rotationYaw,rotationPitch);
+        Client.INSTANCE.getEventBus().fire(e);
+        return this.getVectorForRotation(e.getPitch(), e.getYaw());
     }
 }

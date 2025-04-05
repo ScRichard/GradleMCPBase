@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventMotion;
+import dev.gothaj.events.events.EventMoveFlying;
+import dev.gothaj.events.events.EventSafeWalk;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -453,7 +458,10 @@ public abstract class Entity implements ICommandSender
             double d5 = z;
             boolean flag = this.onGround && this.isSneaking() && this instanceof EntityPlayer;
 
-            if (flag)
+            EventSafeWalk event = (EventSafeWalk) new EventSafeWalk(flag);
+            Client.INSTANCE.getEventBus().fire(event);
+
+            if (event.isSafe() || flag)
             {
                 double d6;
 
@@ -1009,7 +1017,9 @@ public abstract class Entity implements ICommandSender
 
     public void moveFlying(float strafe, float forward, float friction)
     {
-        float f = strafe * strafe + forward * forward;
+        EventMoveFlying event = new EventMoveFlying(strafe,forward,friction,rotationYaw);
+        Client.INSTANCE.getEventBus().fire(event);
+        float f = event.getStrafe() * event.getStrafe() + event.getForward() * event.getForward();
 
         if (f >= 1.0E-4F)
         {
@@ -1022,9 +1032,9 @@ public abstract class Entity implements ICommandSender
 
             f = friction / f;
             strafe = strafe * f;
-            forward = forward * f;
-            float f1 = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F);
-            float f2 = MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F);
+            forward = event.getForward() * f;
+            float f1 = MathHelper.sin(event.getYaw() * (float)Math.PI / 180.0F);
+            float f2 = MathHelper.cos(event.getYaw() * (float)Math.PI / 180.0F);
             this.motionX += (double)(strafe * f2 - forward * f1);
             this.motionZ += (double)(forward * f2 + strafe * f1);
         }

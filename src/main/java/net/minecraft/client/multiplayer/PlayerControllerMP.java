@@ -1,5 +1,7 @@
 package net.minecraft.client.multiplayer;
 
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventItemSync;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -326,14 +328,18 @@ public class PlayerControllerMP
         return pos.equals(this.currentBlock) && flag;
     }
 
-    private void syncCurrentPlayItem()
+    public void syncCurrentPlayItem()
     {
-        int i = this.mc.thePlayer.inventory.currentItem;
+        EventItemSync event = new EventItemSync();
+        Client.INSTANCE.getEventBus().fire(event);
 
-        if (i != this.currentPlayerItem)
-        {
-            this.currentPlayerItem = i;
-            this.netClientHandler.addToSendQueue(new C09PacketHeldItemChange(this.currentPlayerItem));
+        if (!event.isCancelled()) {
+            int i = this.mc.thePlayer.inventory.currentItem;
+
+            if (i != this.currentPlayerItem) {
+                this.currentPlayerItem = i;
+                mc.thePlayer.sendQueue.addToSendQueue(new C09PacketHeldItemChange(this.currentPlayerItem));
+            }
         }
     }
 

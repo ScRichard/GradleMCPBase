@@ -2,11 +2,15 @@ package net.minecraft.block;
 
 import java.util.List;
 import java.util.Random;
+
+import dev.gothaj.Client;
+import dev.gothaj.events.events.EventBoundingBox;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -384,12 +388,14 @@ public class Block
         return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
 
-    public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collidingEntity)
-    {
+    public void addCollisionBoxesToList(final World worldIn, final BlockPos pos, final IBlockState state, final AxisAlignedBB mask, final List<AxisAlignedBB> list, final Entity collidingEntity) {
         AxisAlignedBB axisalignedbb = this.getCollisionBoundingBox(worldIn, pos, state);
-
-        if (axisalignedbb != null && mask.intersectsWith(axisalignedbb))
-        {
+        if (collidingEntity == Minecraft.getMinecraft().thePlayer) {
+            final EventBoundingBox event = (EventBoundingBox)new EventBoundingBox(this, pos, axisalignedbb);
+            Client.INSTANCE.getEventBus().fire(event);
+            axisalignedbb = event.getBoundingBox();
+        }
+        if (axisalignedbb != null && mask.intersectsWith(axisalignedbb)) {
             list.add(axisalignedbb);
         }
     }
