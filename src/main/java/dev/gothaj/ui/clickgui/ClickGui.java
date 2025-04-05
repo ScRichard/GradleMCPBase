@@ -1,6 +1,9 @@
 package dev.gothaj.ui.clickgui;
 
+import dev.gothaj.utilities.font.FontConfig;
+import dev.gothaj.utilities.font.impl.Fonts;
 import dev.gothaj.utilities.render.RenderUtils;
+import dev.gothaj.utilities.render.RoundedUtils;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ClickGui extends GuiScreen {
@@ -9,6 +12,8 @@ public class ClickGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        RenderUtils.drawRect(0, 0, 100,100, 0x90000000);
+        RoundedUtils.drawRoundedRect(0,0,200,200, -1, 7);
+        Fonts.drawString("Hello", 0,0, 0xff000000, FontConfig.ROBOTO);
+
     }
 }

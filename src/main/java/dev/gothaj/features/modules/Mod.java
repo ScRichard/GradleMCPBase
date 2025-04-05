@@ -40,8 +40,20 @@ public class Mod implements ModInitializer {
     @Override
     public void toggle() {
         this.enabled = !this.enabled;
-        if (this.enabled) onEnable();
-        else onDisable();
+        if (this.enabled){
+            onEnable();
+            executeSettings();
+        }
+        else {
+            onDisable();
+            executeSettings();
+        }
+    }
+
+    private void executeSettings() {
+        for(Value setting : this.settings){
+            setting.execute();
+        }
     }
 
     /*
@@ -56,8 +68,8 @@ public class Mod implements ModInitializer {
                 continue;
 
             try {
-                Value value = (Value) field.get(field);
-                if (value != null) {
+                Value value = (Value) field.get(this);
+                if (value != null && !settings.contains(value)) {
                     settings.add(value);
                 }
             } catch (IllegalAccessException e) {

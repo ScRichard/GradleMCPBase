@@ -36,7 +36,7 @@ class ModuleManagerTest {
             m.registerSettings();
             values += m.getSettings().size();
         }
-        Assertions.assertEquals( 0,values);
+        Assertions.assertEquals( 1,values);
 
     }
 

@@ -12,7 +12,6 @@ public class SprintMod extends Mod {
     @Subscribe
     public void onUpdate(EventUpdate e) {
         mc.thePlayer.setSprinting(true);
-        mc.thePlayer.sendChatMessage("MOS");
     }
 
 }

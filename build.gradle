@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm'
 }
 
 group = 'dev.gothaj'
@@ -63,6 +64,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     testImplementation 'org.assertj:assertj-core:3.19.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
 }
 
@@ -74,4 +76,7 @@ tasks.named('test', Test) {
     testLogging {
         events "Passed"
     }
+}
+kotlin {
+    jvmToolchain(8)
 }
