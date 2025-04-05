@@ -15,13 +15,13 @@ public class RoundedUtils {
 
     private static final Shader roundedRectShader = new Shader(Resources.roundedRectShader);
 
-    public static void drawRoundedRect(int x, int y, int width, int height, int color, float rounding) {
+    public static void drawRoundedRect(double x, double y, double width, double height, int color, float rounding) {
         drawRoundedRectWithCorners(x,y,width,height, color, new float[] {
                 rounding,rounding,rounding,rounding
         });
     }
 
-    public static void drawRoundedRectWithCorners(int x, int y, int width, int height, int color, float[] corners) {
+    public static void drawRoundedRectWithCorners(double x, double y, double width, double height, int color, float[] corners) {
 
         Color c = new Color(color);
 
