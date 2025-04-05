@@ -1,5 +1,6 @@
 package dev.gothaj.utilities.render;
 
+import dev.gothaj.utilities.font.FontManager;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
@@ -8,7 +9,6 @@ public class RenderUtils {
     private RenderUtils() {
         throw new IllegalStateException("Utility class");
     }
-
     // Main methods for rendering on screen
     public static void start2D() {
         GlStateManager.enableBlend();
@@ -58,6 +58,7 @@ public class RenderUtils {
     public static void drawRect(double x, double y, double width, double height, int color) {
         start2D(); // starting 2D rendering
         color(color); // setting up color of quads
+
         GL11.glBegin(GL11.GL_QUADS); // setting up drawing
 
         // Verteces
