@@ -1,8 +1,10 @@
-package dev.gothaj.ui.clickgui;
+package dev.gothaj.ui.clickgui.category;
 
+import dev.gothaj.ui.clickgui.screens.UiScreen;
 import dev.gothaj.utilities.render.RoundedUtils;
 import dev.gothaj.utilities.ui.Position;
 import dev.gothaj.utilities.ui.UiInitializer;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,20 +12,25 @@ import java.io.IOException;
 
 @Getter
 @Setter
-public class ClickGui implements UiInitializer {
+@AllArgsConstructor
+public class CategoryButton implements UiInitializer {
 
-    private Position position = new Position(0,0, 400, 300);
+    private String name;
 
+    private final Position position = new Position(0, 0, 90, 25);
+
+    private UiScreen uiScreen;
+
+    @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        RoundedUtils.drawRoundedRect(position.getX(), position.getY(), position.getWidth(), position.getHeight(), 0x181818, 7);
-        RoundedUtils.drawRoundedRectWithCorners(position.getX(), position.getY()+30, 100, position.getHeight()-30, 0x151515, new float[] { 0, 0, 0, 7 });
 
-        RoundedUtils.drawRoundedRectWithCorners(position.getX(), position.getY(), position.getWidth(), 30, 0x121212, new float[] { 7, 7, 0, 0 });
+        RoundedUtils.drawRoundedRect(this.position.getX(), this.position.getY(), this.position.getWidth(), this.position.getHeight(), 0x90000000, 3);
 
     }
 
     @Override
     public void keyTyped(char typedChar, int keyCode) throws IOException {
+
     }
 
     @Override
@@ -40,5 +47,4 @@ public class ClickGui implements UiInitializer {
     public void mouseReleased(int mouseX, int mouseY, int state) {
 
     }
-
 }

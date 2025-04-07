@@ -21,7 +21,16 @@ public class FontManager implements FontManagerInitializer {
 
     public FontManager() {
 
-        fonts.put("roboto", new FontUtils(getResource(Resources.robotoFont, 30)));
+        fonts.put(FontConfig.ROBOTO.getValue(), new FontUtils(getResource(Resources.robotoFont, 30)));
+        fonts.put(FontConfig.ROBOTO_MEDIUM.getValue(), new FontUtils(getResource(Resources.robotoMediumFont, 30)));
+        fonts.put(FontConfig.ROBOTO_BOLD.getValue(), new FontUtils(getResource(Resources.robotoBoldFont, 30)));
+        fonts.put(FontConfig.ROBOTO_EXTRABOLD.getValue(), new FontUtils(getResource(Resources.robotoExtraBoldFont, 30)));
+
+        fonts.put(FontConfig.KARLA_LIGHT.getValue(), new FontUtils(getResource(Resources.karlaLightFont, 30)));
+        fonts.put(FontConfig.KARLA_REGULAR.getValue(), new FontUtils(getResource(Resources.karlaRegularFont, 30)));
+        fonts.put(FontConfig.KARLA_MEDIUM.getValue(), new FontUtils(getResource(Resources.karlaMediumFont, 30)));
+        fonts.put(FontConfig.KARLA_SEMIBOLD.getValue(), new FontUtils(getResource(Resources.karlaSemiBoldFont, 30)));
+        fonts.put(FontConfig.KARLA_BOLD.getValue(), new FontUtils(getResource(Resources.karlaBoldFont, 30)));
     }
 
     public FontUtils getFont(String font) {

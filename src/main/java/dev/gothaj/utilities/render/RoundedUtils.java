@@ -30,7 +30,7 @@ public class RoundedUtils {
 
         roundedRectShader.uniform4f("radius", corners[3], corners[0],corners[2], corners[1]);
         roundedRectShader.uniform2f("size", (float) width,(float) height);
-        roundedRectShader.uniform4f("color", c.getRed() /255F, c.getAlpha() /255F, c.getBlue() /255F, c.getAlpha() /255F);
+        roundedRectShader.uniform4f("color", c.getRed() /255F, c.getGreen() /255F, c.getBlue() /255F, c.getAlpha() /255F);
 
         int textureID = GL11.glGenTextures();
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);

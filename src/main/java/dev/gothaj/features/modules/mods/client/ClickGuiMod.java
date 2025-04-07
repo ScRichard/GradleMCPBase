@@ -2,6 +2,7 @@ package dev.gothaj.features.modules.mods.client;
 
 import dev.gothaj.features.modules.Mod;
 import dev.gothaj.features.modules.anotations.ModRegister;
+import dev.gothaj.ui.RenderingScreen;
 import dev.gothaj.ui.clickgui.ClickGui;
 import org.lwjgl.input.Keyboard;
 
@@ -10,7 +11,7 @@ public class ClickGuiMod extends Mod {
 
     @Override
     public void onEnable() {
-        mc.displayGuiScreen(new ClickGui());
+        mc.displayGuiScreen(new RenderingScreen());
         this.toggle();
     }
 }
