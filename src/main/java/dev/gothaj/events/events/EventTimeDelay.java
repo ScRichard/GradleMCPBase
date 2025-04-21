@@ -8,15 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class EventMotion extends Event{
-	
-	private double x;
-	private double y;
-	private double z;
-
-	private float yaw;
-	private float pitch;
-
-	private boolean onGround;
+public class EventTimeDelay extends Event {
 
 }

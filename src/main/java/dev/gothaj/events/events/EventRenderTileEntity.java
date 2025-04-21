@@ -4,19 +4,11 @@ import dev.gothaj.events.Event;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.tileentity.TileEntity;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class EventMotion extends Event{
-	
-	private double x;
-	private double y;
-	private double z;
-
-	private float yaw;
-	private float pitch;
-
-	private boolean onGround;
-
+public class EventRenderTileEntity extends Event {
+	private TileEntity entity;
 }

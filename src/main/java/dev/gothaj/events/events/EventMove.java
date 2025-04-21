@@ -1,4 +1,4 @@
-package dev.gothaj.events.events;
+package vip.gothaj.client.event.events;
 
 import dev.gothaj.events.Event;
 import lombok.AllArgsConstructor;
@@ -8,6 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class EventUpdate extends Event{
-
+public class EventMove extends Event
+{
+    private double x;
+    private double y;
+    private double z;
 }
