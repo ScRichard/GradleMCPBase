@@ -2,7 +2,6 @@ package dev.gothaj;
 
 import dev.gothaj.events.EventBus;
 import dev.gothaj.features.modules.ModuleManager;
-import dev.gothaj.utilities.font.FontManager;
 import lombok.Getter;
 
 @Getter
@@ -11,8 +10,6 @@ public enum Client {
 
     private ModuleManager moduleManager;
     private EventBus eventBus;
-
-    private FontManager fontManager = new FontManager();
 
     // Enabling a Client
     public void onEnable() {

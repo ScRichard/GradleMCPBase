@@ -1,8 +1,7 @@
 package dev.gothaj.ui.clickgui.category;
 
 import dev.gothaj.ui.clickgui.screens.UiScreen;
-import dev.gothaj.utilities.font.FontConfig;
-import dev.gothaj.utilities.font.impl.Fonts;
+import dev.gothaj.utilities.render.ColorUtils;
 import dev.gothaj.utilities.render.RoundedUtils;
 import dev.gothaj.utilities.ui.Position;
 import dev.gothaj.utilities.ui.UiInitializer;
@@ -27,11 +26,15 @@ public class CategoryButton implements UiInitializer {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
-        RoundedUtils.drawRoundedRect(this.position.getX(), this.position.getY(), this.position.getWidth(), this.position.getHeight(), 0x1D1D1D, 3);
+        int color = 0x1D1D1D;
+        if(this.position.isInside(mouseX, mouseY)) {
+            color = ColorUtils.mix(0x9A64B4, 0x1D1D1D, 0.5F).getRGB();
+        }
 
-        Fonts.drawString(name, this.position.getX() + 20, this.position.getY() + this.position.getHeight() / 2 - Fonts.getHeight(FontConfig.ROBOTO_MEDIUM) /2, 0x90f2f2f2, FontConfig.ROBOTO_MEDIUM);
 
-    }
+
+        RoundedUtils.drawRoundedRect(this.position.getX(), this.position.getY(), this.position.getWidth(), this.position.getHeight(), color, 3);
+ }
 
     @Override
     public void keyTyped(char typedChar, int keyCode) throws IOException {

@@ -22,4 +22,6 @@ public class Resources {
     public static final ResourceLocation karlaSemiBoldFont = new ResourceLocation("gothaj/fonts/Karla-SemiBold.ttf");
     public static final ResourceLocation karlaBoldFont = new ResourceLocation("gothaj/fonts/Karla-Bold.ttf");
 
+    public static final ResourceLocation icons = new ResourceLocation("gothaj/icons/MaterialIcons-Regular.ttf");
+
 }

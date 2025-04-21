@@ -7,10 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class CharData {
-    private int width;
-    private int height;
-    private int storedX;
-    private int storedY;
+public class Glyph {
+    private double x;
+    private double y;
+    private double width;
+    private double heigth;
 }
