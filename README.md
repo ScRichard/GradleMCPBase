@@ -4,8 +4,7 @@
 
 ---
 ### Developed by:
-LosCumum, Dejvak007, Daviduss, nyghtful, Jurko
-
+Me
 ---
 
 ## Requirements
