@@ -10,8 +10,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
 
 public class IconRenderer extends AbstractFontRenderer<Character> {
 
