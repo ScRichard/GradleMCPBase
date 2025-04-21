@@ -1,6 +1,5 @@
 package dev.gothaj.utilities.render;
 
-import dev.gothaj.utilities.font.FontManager;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 

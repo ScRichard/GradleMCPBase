@@ -41,3 +41,8 @@ bin/
 ### Mac OS ###
 .DS_Store
 run/usercache.json
+run/hs_err_pid24108.log
+run/replay_pid24108.log
+run/saves/**
+run/usercache.json
+run/usercache.json
